@@ -4,7 +4,7 @@ This simple extension is event-driven (webNavigation.onCompleted), without a lon
 
 When it detects that you are logged into a PROD account, it turns the navbar RED
 
-![Navbar](https://github.com/eenewbsauce/Chrome-Extension-AWS-PROD/navbar.png)
+![Navbar](https://github.com/eenewbsauce/Chrome-Extension-AWS-PROD/blob/master/navbar.png)
 
 To detect your prod environment, simply change the {{placeholder}} text in `navigation-handler.js` to match a portion of your prod user name.
 
