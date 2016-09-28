@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+
+  "name": "AWS-Prod-Extension",
+  "description": "This extension illuminates key areas when you are logged into the PROD AWS account",
+  "version": "1.0",
+  "background": {
+    "persistence": false,
+    "scripts": ["main.js", "navigation-handler.js"]
+  },
+  "content_scripts": [{
+    "css": ["main.css"],
+    "matches": ["https://*.aws.amazon.com/*"]
+  }],
+  "permissions": [
+    "webNavigation", 
+    "*://*/*"
+  ]
+}
