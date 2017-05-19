@@ -1,19 +1,29 @@
 {
   "manifest_version": 2,
 
-  "name": "AWS-Prod-Extension",
-  "description": "This extension illuminates key areas when you are logged into the PROD AWS account",
+  "name": "Trello-Clean-Mode",
+  "description": "This extension strips down Trello boards to eliminate noise",
   "version": "1.0",
+  "icons": {
+    "128": "icon_100.png"
+  },
   "background": {
-    "persistence": false,
-    "scripts": ["main.js", "navigation-handler.js"]
+    "persistence": true,
+    "scripts": ["jquery.js", "main.js", "navigation-handler.js", "options.js", "dom.js"]
   },
   "content_scripts": [{
     "css": ["main.css"],
-    "matches": ["https://*.aws.amazon.com/*"]
+    "js": ["jquery.js"],
+    "matches": ["https://*.trello.com/*"]
   }],
   "permissions": [
-    "webNavigation", 
+    "webNavigation",
+    "tabs",
     "*://*/*"
-  ]
+  ],
+  "browser_action": {
+    "default_title": "",
+    "default_icon": "icon_100.png",
+    "default_popup": "popup.html"
+  }
 }
