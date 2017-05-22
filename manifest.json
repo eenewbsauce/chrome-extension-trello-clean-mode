@@ -9,14 +9,15 @@
   },
   "background": {
     "persistence": true,
-    "scripts": ["jquery.js", "main.js", "navigation-handler.js", "options.js", "dom.js"]
+    "scripts": ["jquery.js", "main.js", "navigation-handler.js", "options.js"]
   },
   "content_scripts": [{
     "css": ["main.css"],
-    "js": ["jquery.js"],
+    "js": ["jquery.js", "dom.js"],
     "matches": ["https://*.trello.com/*"]
   }],
   "permissions": [
+    "storage",
     "webNavigation",
     "tabs",
     "*://*/*"
