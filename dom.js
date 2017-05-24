@@ -3,9 +3,9 @@ chrome.extension.onMessage.addListener(
 
     if (request.element === "members") {
       if (request.isChecked) {
-        $('.list-card-members').hide();
-      } else {
         $('.list-card-members').show();
+      } else {
+        $('.list-card-members').hide();
       }
     }
 

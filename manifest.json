@@ -17,6 +17,7 @@
     "matches": ["https://*.trello.com/*"]
   }],
   "permissions": [
+    "storage",
     "webNavigation",
     "tabs",
     "*://*/*"
