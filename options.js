@@ -1,12 +1,16 @@
-window.addEventListener('load', function (evt) {
-  $('#members-checkbox').on('click', toggle);
-  $('#labels-checkbox').on('click', toggle);
-  $('#stickers-checkbox').on('click', toggle);
-  $('#badges-checkbox').on('click', toggle);
-  $('#cover-images-checkbox').on('click', toggle);
+var settings;
 
-  $('#clear').on('click', clearStorage);
+window.addEventListener('load', function (evt) {
+  settings = getInitialSettings();
+
+  for(var key in settings) {
+    $(`#${key}-checkbox`).on('click', toggle);
+  }
+
+  $('#reset').on('click', resetSettings);
 });
+
+setupOptions();
 
 function getInitialSettings() {
   var baseSettings = {
@@ -35,14 +39,9 @@ function getInitialSettings() {
   return baseSettings;
 }
 
-setupOptions();
-
-function clearStorage() {
+function resetSettings() {
   chrome.storage.sync.clear();
   setupOptions();
-  // $('input[type="checkbox"]').each((i, elem) => {
-  //   $(elem).prop('checked', true);
-  // })
 }
 
 function toggle() {
@@ -75,7 +74,7 @@ function sendToggleMessage(message, saveToStorage) {
 function setupOptions() {
   chrome.storage.sync.get(function(options) {
     if (Object.keys(options).length === 0) {
-      options = getInitialSettings();
+      options = settings;
       chrome.storage.sync.set(options, () => {})
     }
 
