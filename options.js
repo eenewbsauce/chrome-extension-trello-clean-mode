@@ -4,13 +4,10 @@ window.addEventListener('load', function (evt) {
   function toggle() {
     var isChecked = $(this).prop('checked');
     chrome.tabs.getSelected(null, function(tab) {
-      chrome.tabs.sendMessage(tab.id, {element: 'members', isChecked:isChecked}, function(response) {
-        // console.log(response.farewell);
+      chrome.tabs.sendMessage(tab.id, {element: 'members', isChecked: isChecked}, function(response) {
+        console.log(response);
 
-        chrome.storage.sync.set({'members': isChecked}, function() {
-          // Notify that we saved.
-          message('Settings saved');
-        });
+        // chrome.storage.sync.set({'members': isChecked});
       });
     });
   }

@@ -2,8 +2,12 @@ chrome.extension.onMessage.addListener(
   function(request, sender, sendResponse) {
 
     if (request.element === "members") {
-      $('.list-card-members').toggle()
+      if (request.isChecked) {
+        $('.list-card-members').hide();
+      } else {
+        $('.list-card-members').show();
+      }
     }
 
-    // sendResponse({farewell: 'foo'})
+    sendResponse({farewell: 'foo'})
 });
