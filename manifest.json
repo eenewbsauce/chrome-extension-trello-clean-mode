@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Trello-Clean-Mode",
+  "name": "Trello Clean Mode",
   "description": "This extension strips down Trello boards to eliminate noise",
   "version": "1.0",
   "icons": {
@@ -26,5 +26,6 @@
     "default_title": "",
     "default_icon": "icon_100.png",
     "default_popup": "popup.html"
-  }
+  },
+  "version": "1.1"
 }
