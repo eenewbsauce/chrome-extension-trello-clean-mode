@@ -1,18 +1,19 @@
 var settings;
 
 window.addEventListener('load', function (evt) {
-  settings = getInitialSettings();
+  settings = getInitialSettings(true);
 
   for(var key in settings) {
     $(`#${key}-checkbox`).on('click', toggle);
   }
 
-  $('#reset').on('click', resetSettings);
+  $('#all').on('click', resetSettings);
+  $('#none').on('click', clearSettings);  
 });
 
 setupOptions();
 
-function getInitialSettings() {
+function getInitialSettings(isChecked) {
   var baseSettings = {
     members: {
       selector: '.list-card-members'
@@ -33,7 +34,7 @@ function getInitialSettings() {
 
   for(var key in baseSettings) {
     var setting = baseSettings[key];
-    setting.isChecked = true;
+    setting.isChecked = isChecked;
   }
 
   return baseSettings;
@@ -41,7 +42,12 @@ function getInitialSettings() {
 
 function resetSettings() {
   chrome.storage.sync.clear();
-  setupOptions();
+  setupOptions(true);
+}
+
+function clearSettings() {
+  chrome.storage.sync.clear();
+  setupOptions(false);
 }
 
 function toggle() {
@@ -71,10 +77,10 @@ function sendToggleMessage(message, saveToStorage) {
   });
 }
 
-function setupOptions() {
+function setupOptions(isChecked) {
   chrome.storage.sync.get(function(options) {
     if (Object.keys(options).length === 0) {
-      options = settings;
+      options = getInitialSettings(isChecked);
       chrome.storage.sync.set(options, () => {})
     }
 
